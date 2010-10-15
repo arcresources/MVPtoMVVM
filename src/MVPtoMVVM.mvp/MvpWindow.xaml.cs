@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
-using MVPtoMVVM.domain;
+using System.Linq;
 using MVPtoMVVM.presenters;
+using MVPtoMVVM.views;
 using StructureMap;
 
 namespace MVPtoMVVM.mvp
@@ -13,14 +13,14 @@ namespace MVPtoMVVM.mvp
         public MvpWindow()
         {
             InitializeComponent();
-            Debug.Write(ObjectFactory.WhatDoIHave());
             presenter = ObjectFactory.GetInstance<IMvpPresenter>();
             presenter.SetView(this);
         }
 
-        public void SetTodoItems(IEnumerable<TodoItem> items)
+        public void SetTodoItems(IEnumerable<ITodoItemPresenter> presenters)
         {
-            todoItemsGrid.ItemsSource = items;
+            todoItemsList.ItemsSource = presenters.Select(x => new TodoItemView(x));
         }
+
     }
 }

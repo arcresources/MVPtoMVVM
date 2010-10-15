@@ -1,5 +1,8 @@
 using System;
+using System.Linq;
+using MVPtoMVVM.mappers;
 using MVPtoMVVM.repositories;
+using MVPtoMVVM.views;
 
 namespace MVPtoMVVM.presenters
 {
@@ -7,10 +10,12 @@ namespace MVPtoMVVM.presenters
     {
         private IMvpView view;
         private ITodoItemRepository itemRepository;
+        private ITodoItemPresenterMapper presenterMapper;
 
-        public MvpPresenter(ITodoItemRepository itemRepository)
+        public MvpPresenter(ITodoItemRepository itemRepository, ITodoItemPresenterMapper presenterMapper)
         {
             this.itemRepository = itemRepository;
+            this.presenterMapper = presenterMapper;
         }
 
         public void SetView(IMvpView view)
@@ -21,7 +26,7 @@ namespace MVPtoMVVM.presenters
 
         private void InitializeView()
         {
-            view.SetTodoItems(itemRepository.GetAll());
+            view.SetTodoItems(presenterMapper.MapAll(itemRepository.GetAll()));
         }
     }
 }
