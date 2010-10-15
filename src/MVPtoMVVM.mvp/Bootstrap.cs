@@ -7,14 +7,13 @@ namespace MVPtoMVVM.mvp
     {
         public void Execute()
         {
-            ObjectFactory.Initialize(x =>
-            {
+            ObjectFactory.Initialize(x => 
                 x.Scan(scanner =>
                 {
                     scanner.AssemblyContainingType(typeof(TodoItem));
-
-                });
-            });
+                    scanner.WithDefaultConventions();
+                })
+            );
 
         }
     }

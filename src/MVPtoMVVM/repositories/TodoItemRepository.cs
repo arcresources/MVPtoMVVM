@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace MVPtoMVVM.repositories
 {
-    class TodoItemRepository : ITodoItemRepository
+    public class TodoItemRepository : ITodoItemRepository
     {
         private List<TodoItem> items = new List<TodoItem>();
 

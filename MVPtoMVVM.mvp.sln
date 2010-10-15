@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVPtoMVVM.mvp", "src\MVPtoM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVPtoMVVM", "src\MVPtoMVVM\MVPtoMVVM.csproj", "{FFF299F6-DB6A-4858-B7A9-B5BE3F7C6325}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVPtoMVVM.test", "src\MVPtoMVVM.test\MVPtoMVVM.test.csproj", "{49C84DD0-766B-44B4-A871-4D2C829556F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,16 @@ Global
 		{FFF299F6-DB6A-4858-B7A9-B5BE3F7C6325}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{FFF299F6-DB6A-4858-B7A9-B5BE3F7C6325}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{FFF299F6-DB6A-4858-B7A9-B5BE3F7C6325}.Release|x86.ActiveCfg = Release|Any CPU
+		{49C84DD0-766B-44B4-A871-4D2C829556F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49C84DD0-766B-44B4-A871-4D2C829556F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49C84DD0-766B-44B4-A871-4D2C829556F1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{49C84DD0-766B-44B4-A871-4D2C829556F1}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{49C84DD0-766B-44B4-A871-4D2C829556F1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{49C84DD0-766B-44B4-A871-4D2C829556F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49C84DD0-766B-44B4-A871-4D2C829556F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49C84DD0-766B-44B4-A871-4D2C829556F1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{49C84DD0-766B-44B4-A871-4D2C829556F1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{49C84DD0-766B-44B4-A871-4D2C829556F1}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
