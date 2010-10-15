@@ -24,6 +24,7 @@ namespace MVPtoMVVM.presenters
         {
             view.Description = item.Description;
             view.DueDate = item.DueDate;
+            view.SaveButtonEnabled = false;
         }
 
     }

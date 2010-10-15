@@ -6,5 +6,6 @@ namespace MVPtoMVVM.views
     {
         string Description { get; set; }
         DateTime DueDate { get; set; }
+        bool SaveButtonEnabled { get; set; }
     }
 }
