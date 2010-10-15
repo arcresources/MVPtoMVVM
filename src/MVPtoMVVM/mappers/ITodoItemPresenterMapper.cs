@@ -7,6 +7,7 @@ namespace MVPtoMVVM.mappers
 {
     public interface ITodoItemPresenterMapper
     {
+        ITodoItemPresenter MapFrom(TodoItem item);
         IEnumerable<ITodoItemPresenter> MapAll(IEnumerable<TodoItem> items);
     }
 }

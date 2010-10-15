@@ -8,7 +8,7 @@ namespace MVPtoMVVM.mappers
 {
     public class TodoItemPresenterMapper : ITodoItemPresenterMapper
     {
-        private ITodoItemPresenter MapFrom(TodoItem item)
+        public ITodoItemPresenter MapFrom(TodoItem item)
         {
             var presenter = ObjectFactory.GetInstance<ITodoItemPresenter>();
             presenter.Id = item.Id;

@@ -2,7 +2,11 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
-    <StackPanel>
-        <ListView Name="todoItemsList"></ListView>
-    </StackPanel>
+    <DockPanel LastChildFill="False">
+        <ListView Name="todoItemsList" DockPanel.Dock="Top" />
+        <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
+            <Button Content="Cancel Changes" Name="cancelButton" DockPanel.Dock="Right"/>
+            <Button Content="Add New Item" Name="newItemButton" DockPanel.Dock="Right"/>
+        </DockPanel>
+    </DockPanel>
 </Window>

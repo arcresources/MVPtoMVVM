@@ -1,4 +1,5 @@
 using System;
+using MVPtoMVVM.presenters;
 
 namespace MVPtoMVVM.views
 {
@@ -7,5 +8,6 @@ namespace MVPtoMVVM.views
         string Description { get; set; }
         DateTime DueDate { get; set; }
         bool SaveButtonEnabled { get; set; }
+        ITodoItemPresenter Presenter { get; }
     }
 }

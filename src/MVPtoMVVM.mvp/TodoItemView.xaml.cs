@@ -11,6 +11,7 @@ namespace MVPtoMVVM.mvp
     {
         public TodoItemView(ITodoItemPresenter presenter)
         {
+            Presenter = presenter;
             InitializeComponent();
             presenter.SetView(this);
             saveButton.Click += (o, e) => presenter.SaveItem();
@@ -37,5 +38,6 @@ namespace MVPtoMVVM.mvp
             set { saveButton.IsEnabled = value; }
         }
 
+        public ITodoItemPresenter Presenter { get; private set; }
     }
 }

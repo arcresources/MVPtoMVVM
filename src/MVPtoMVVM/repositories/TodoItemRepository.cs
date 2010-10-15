@@ -7,13 +7,13 @@ namespace MVPtoMVVM.repositories
 {
     public class TodoItemRepository : ITodoItemRepository
     {
-        private List<TodoItem> items;
+        private static readonly List<TodoItem> items = new List<TodoItem>();
         private int totalItems = 0;
 
         public TodoItemRepository()
         {
-            items = new List<TodoItem>();
-            Save(new TodoItem {Description = "First One", DueDate = DateTime.Today});
+            if (!items.Any())
+                Save(new TodoItem {Description = "First One", DueDate = DateTime.Today});
         }
 
         public void Save(TodoItem item)
