@@ -7,5 +7,7 @@
     <StackPanel Orientation="Horizontal">
         <TextBox Name="description" Width="200"/>
         <DatePicker Name="dueDate" />
+        <Button Content="Save" Name="saveButton"></Button>
+        <Button Content="Del" Name="deleteButton"></Button>
     </StackPanel>
 </UserControl>
