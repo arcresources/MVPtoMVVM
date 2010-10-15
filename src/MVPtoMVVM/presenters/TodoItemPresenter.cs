@@ -35,6 +35,7 @@ namespace MVPtoMVVM.presenters
 
         private void InitializeView()
         {
+            view.Id = Id;
             view.Description = Description;
             view.DueDate = DueDate;
             view.SaveButtonEnabled = false;
@@ -51,7 +52,8 @@ namespace MVPtoMVVM.presenters
         public void DeleteItem()
         {
             var item = itemMapper.MapFrom(this);
-            itemRepository.Delete(item);
+            view.Remove(item.Id);
+            itemRepository.Delete(item);            
         }
 
         private string description;

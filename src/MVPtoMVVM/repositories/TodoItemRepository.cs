@@ -8,7 +8,7 @@ namespace MVPtoMVVM.repositories
     public class TodoItemRepository : ITodoItemRepository
     {
         private static readonly List<TodoItem> items = new List<TodoItem>();
-        private int totalItems = 0;
+        private static int totalItems;
 
         public TodoItemRepository()
         {
@@ -38,12 +38,14 @@ namespace MVPtoMVVM.repositories
 
         public void Delete(TodoItem item)
         {
-            items.Remove(item);
+            var repoItem = items.Find(x => x.Id == item.Id);
+            items.Remove(repoItem);
         }
 
         private void UpdateItem(TodoItem item)
         {
-            items.Remove(items.Single(x => x.Id == item.Id));
+            var oldItem = items.Single(x => x.Id == item.Id);
+            items.Remove(oldItem);
             items.Add(item);
         }
 

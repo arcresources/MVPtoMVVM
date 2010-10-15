@@ -21,7 +21,7 @@ namespace MVPtoMVVM.mvp
 
         public void SetTodoItems(IEnumerable<ITodoItemPresenter> presenters)
         {
-            todoItemsList.ItemsSource = presenters.Select(x => new TodoItemView(x));
+            todoItemsList.ItemsSource = presenters.Select(x => new TodoItemView(x, presenter));
         }
 
         public IEnumerable<ITodoItemPresenter> GetTodoItems()

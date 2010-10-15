@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using MVPtoMVVM.domain;
 using MVPtoMVVM.mappers;
 using MVPtoMVVM.repositories;
 using MVPtoMVVM.views;
+using System.Linq;
 
 namespace MVPtoMVVM.presenters
 {
@@ -37,6 +37,11 @@ namespace MVPtoMVVM.presenters
         public void CancelAllChanges()
         {
             RefreshItems();
+        }
+
+        public void Remove(int itemId)
+        {
+            view.SetTodoItems(view.GetTodoItems().Where(x => x.Id != itemId));
         }
 
         private void InitializeView()

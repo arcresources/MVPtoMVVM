@@ -1,4 +1,5 @@
 ﻿using System;
+using MVPtoMVVM.domain;
 using MVPtoMVVM.presenters;
 using MVPtoMVVM.views;
 
@@ -9,8 +10,11 @@ namespace MVPtoMVVM.mvp
     /// </summary>
     public partial class TodoItemView : ITodoItemView
     {
-        public TodoItemView(ITodoItemPresenter presenter)
+        private readonly IMvpPresenter parent;
+
+        public TodoItemView(ITodoItemPresenter presenter, IMvpPresenter parent)
         {
+            this.parent = parent;
             Presenter = presenter;
             InitializeComponent();
             presenter.SetView(this);
@@ -19,6 +23,8 @@ namespace MVPtoMVVM.mvp
             description.TextChanged += (o, e) => presenter.Description = description.Text;
             dueDate.SelectedDateChanged += (o, e) => presenter.DueDate = dueDate.SelectedDate.Value;
         }
+
+        public int Id{ get; set; }
 
         public string Description
         {
@@ -39,5 +45,9 @@ namespace MVPtoMVVM.mvp
         }
 
         public ITodoItemPresenter Presenter { get; private set; }
+        public void Remove(int itemId)
+        {
+            parent.Remove(itemId);
+        }
     }
 }
