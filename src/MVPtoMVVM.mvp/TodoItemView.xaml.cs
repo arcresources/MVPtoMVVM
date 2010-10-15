@@ -13,6 +13,10 @@ namespace MVPtoMVVM.mvp
         {
             InitializeComponent();
             presenter.SetView(this);
+            saveButton.Click += (o, e) => presenter.SaveItem();
+            deleteButton.Click += (o, e) => presenter.DeleteItem();
+            description.TextChanged += (o, e) => presenter.Description = description.Text;
+            dueDate.SelectedDateChanged += (o, e) => presenter.DueDate = dueDate.SelectedDate.Value;
         }
 
         public string Description
@@ -32,5 +36,6 @@ namespace MVPtoMVVM.mvp
             get { return saveButton.IsEnabled; }
             set { saveButton.IsEnabled = value; }
         }
+
     }
 }

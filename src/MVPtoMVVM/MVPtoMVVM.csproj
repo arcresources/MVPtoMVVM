@@ -46,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="domain\TodoItem.cs" />
+    <Compile Include="mappers\ITodoItemMapper.cs" />
     <Compile Include="mappers\ITodoItemPresenterMapper.cs" />
+    <Compile Include="mappers\TodoItemMapper.cs" />
     <Compile Include="mappers\TodoItemPresenterMapper.cs" />
     <Compile Include="presenters\ITodoItemPresenter.cs" />
     <Compile Include="presenters\TodoItemPresenter.cs" />

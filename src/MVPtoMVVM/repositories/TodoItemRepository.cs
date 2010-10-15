@@ -13,10 +13,10 @@ namespace MVPtoMVVM.repositories
         public TodoItemRepository()
         {
             items = new List<TodoItem>();
-            Add(new TodoItem {Description = "First One", DueDate = DateTime.Today});
+            Save(new TodoItem {Description = "First One", DueDate = DateTime.Today});
         }
 
-        public void Add(TodoItem item)
+        public void Save(TodoItem item)
         {
             if (item.Id == 0)
                 AddItem(item);
@@ -35,6 +35,12 @@ namespace MVPtoMVVM.repositories
         {
             return items.AsEnumerable();
         }
+
+        public void Delete(TodoItem item)
+        {
+            items.Remove(item);
+        }
+
         private void UpdateItem(TodoItem item)
         {
             items.Remove(items.Single(x => x.Id == item.Id));

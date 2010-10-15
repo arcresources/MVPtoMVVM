@@ -5,8 +5,9 @@ namespace MVPtoMVVM.repositories
 {
     public interface ITodoItemRepository
     {
-        void Add(TodoItem item);
+        void Save(TodoItem item);
         TodoItem Get(int id);
         IEnumerable<TodoItem> GetAll();
+        void Delete(TodoItem item);
     }
 }

@@ -15,6 +15,7 @@ namespace MVPtoMVVM.mvp
             InitializeComponent();
             presenter = ObjectFactory.GetInstance<IMvpPresenter>();
             presenter.SetView(this);
+            
         }
 
         public void SetTodoItems(IEnumerable<ITodoItemPresenter> presenters)

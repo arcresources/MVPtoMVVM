@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using MVPtoMVVM.domain;
 using MVPtoMVVM.presenters;
-using MVPtoMVVM.views;
 using StructureMap;
 
 namespace MVPtoMVVM.mappers
@@ -13,7 +11,9 @@ namespace MVPtoMVVM.mappers
         private ITodoItemPresenter MapFrom(TodoItem item)
         {
             var presenter = ObjectFactory.GetInstance<ITodoItemPresenter>();
-            presenter.SetItem(item);
+            presenter.Id = item.Id;
+            presenter.Description = item.Description;
+            presenter.DueDate = item.DueDate;
             return presenter;
         }
 
