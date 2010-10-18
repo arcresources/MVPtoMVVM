@@ -9,5 +9,6 @@ namespace MVPtoMVVM.repositories
         TodoItem Get(int id);
         IEnumerable<TodoItem> GetAll();
         void Delete(TodoItem item);
+        void Delete(int todoItemId);
     }
 }

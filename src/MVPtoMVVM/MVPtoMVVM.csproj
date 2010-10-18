@@ -46,19 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="domain\TodoItem.cs" />
-    <Compile Include="mappers\ITodoItemMapper.cs" />
-    <Compile Include="mappers\ITodoItemPresenterMapper.cs" />
-    <Compile Include="mappers\TodoItemMapper.cs" />
-    <Compile Include="mappers\TodoItemPresenterMapper.cs" />
-    <Compile Include="presenters\ITodoItemPresenter.cs" />
-    <Compile Include="presenters\TodoItemPresenter.cs" />
-    <Compile Include="views\IMvpView.cs" />
-    <Compile Include="presenters\IMvpPresenter.cs" />
-    <Compile Include="presenters\MvpPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="repositories\ITodoItemRepository.cs" />
     <Compile Include="repositories\TodoItemRepository.cs" />
-    <Compile Include="views\ITodoItemView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
