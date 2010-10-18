@@ -22,7 +22,7 @@ namespace MVPtoMVVM.mvvm.viewmodels
             validations = new Dictionary<string, IValidation>
                               {
                                   {"Description", new Validation(() => !string.IsNullOrEmpty(Description), "Cannot have an empty description.")},
-                                  {"DueDate", new Validation(() => DueDate >= DateTime.Now, "Due Date must occur on or after today.")}
+                                  {"DueDate", new Validation(() => DueDate >= DateTime.Today, "Due Date must occur on or after today.")}
                               };
         }
 
@@ -30,7 +30,6 @@ namespace MVPtoMVVM.mvvm.viewmodels
         {
             todoItemRepository.Delete(Id);
             Parent.TodoItems.Remove(this);
-            Parent.Update(x => x.TodoItems);
         }
 
         private bool CanSave()

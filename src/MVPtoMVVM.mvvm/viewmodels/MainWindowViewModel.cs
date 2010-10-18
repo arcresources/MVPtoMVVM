@@ -38,8 +38,7 @@ namespace MVPtoMVVM.mvvm.viewmodels
 
         private void AddNewItem()
         {
-            TodoItems.Add(new TodoItemViewModel(todoItemRepository){Parent =  this});
-            updater.Update(x => x.TodoItems);
+            TodoItems.Add(new TodoItemViewModel(todoItemRepository){Parent =  this, DueDate = DateTime.Today, Description = string.Empty});
         }
 
         private TodoItemViewModel MapFrom(TodoItem x)
