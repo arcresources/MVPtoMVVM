@@ -1,5 +1,7 @@
 ﻿using System;
-using MVPtoMVVM.domain;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 using MVPtoMVVM.presenters;
 using MVPtoMVVM.views;
 
@@ -11,6 +13,8 @@ namespace MVPtoMVVM.mvp
     public partial class TodoItemView : ITodoItemView
     {
         private readonly IMvpPresenter parent;
+        private Brush defaultBorderBrush;
+        private Thickness defaultBorderThickness;
 
         public TodoItemView(ITodoItemPresenter presenter, IMvpPresenter parent)
         {
@@ -22,6 +26,8 @@ namespace MVPtoMVVM.mvp
             deleteButton.Click += (o, e) => presenter.DeleteItem();
             description.TextChanged += (o, e) => presenter.Description = description.Text;
             dueDate.SelectedDateChanged += (o, e) => presenter.DueDate = dueDate.SelectedDate.Value;
+            defaultBorderBrush = description.BorderBrush;
+            defaultBorderThickness = description.BorderThickness;
         }
 
         public int Id{ get; set; }
@@ -45,6 +51,41 @@ namespace MVPtoMVVM.mvp
         }
 
         public ITodoItemPresenter Presenter { get; private set; }
+
+        public bool DescriptionHasValidationErrors
+        {
+            set
+            {
+                if (value)
+                {
+                    description.BorderBrush = Brushes.Red;
+                    description.BorderThickness = new Thickness(2);
+                }
+                else
+                {
+                    description.BorderBrush = defaultBorderBrush;
+                    description.BorderThickness = defaultBorderThickness;
+                }
+            }
+        }
+
+        public bool DueDateHasValidationErrors
+        {
+            set
+            {
+                if (value)
+                {
+                    dueDate.BorderBrush = Brushes.Red;
+                    dueDate.BorderThickness = new Thickness(2);
+                }
+                else
+                {
+                    dueDate.BorderBrush = defaultBorderBrush;
+                    dueDate.BorderThickness = defaultBorderThickness;
+                }
+            }
+        }
+
         public void Remove(int itemId)
         {
             parent.Remove(itemId);

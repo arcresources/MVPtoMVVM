@@ -80,8 +80,25 @@ namespace MVPtoMVVM.presenters
             get { return isDirty; }
             private set { isDirty = value;
             if (view != null)
-                view.SaveButtonEnabled = isDirty;
+                UpdateControlState();
             }
+        }
+
+        private void UpdateControlState()
+        {
+            view.SaveButtonEnabled = IsDirty && IsDescriptionValid() && IsDueDateValid();
+            view.DescriptionHasValidationErrors = !IsDescriptionValid();
+            view.DueDateHasValidationErrors = !IsDueDateValid();
+        }
+
+        private bool IsDescriptionValid()
+        {
+            return description.Length > 0;
+        }
+
+        private bool IsDueDateValid()
+        {
+            return dueDate >= DateTime.Today;
         }
     }
 }

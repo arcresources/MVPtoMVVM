@@ -11,6 +11,8 @@ namespace MVPtoMVVM.views
         DateTime DueDate { get; set; }
         bool SaveButtonEnabled { get; set; }
         ITodoItemPresenter Presenter { get; }
+        bool DescriptionHasValidationErrors { set; }
+        bool DueDateHasValidationErrors { set; }
         void Remove(int itemId);
     }
 }
