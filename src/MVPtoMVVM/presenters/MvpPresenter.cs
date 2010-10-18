@@ -29,7 +29,7 @@ namespace MVPtoMVVM.presenters
         public void AddNewItem()
         {
             var items = new List<ITodoItemPresenter>(view.GetTodoItems());
-            var newItem = presenterMapper.MapFrom(new TodoItem { DueDate = DateTime.Today});
+            var newItem = presenterMapper.MapFrom(new TodoItem { DueDate = DateTime.Today, Description = ""});
             items.Add(newItem);
             view.SetTodoItems(items);
         }

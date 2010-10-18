@@ -21,13 +21,13 @@ namespace MVPtoMVVM.mvp
             this.parent = parent;
             Presenter = presenter;
             InitializeComponent();
-            presenter.SetView(this);
             saveButton.Click += (o, e) => presenter.SaveItem();
             deleteButton.Click += (o, e) => presenter.DeleteItem();
             description.TextChanged += (o, e) => presenter.Description = description.Text;
             dueDate.SelectedDateChanged += (o, e) => presenter.DueDate = dueDate.SelectedDate.Value;
             defaultBorderBrush = description.BorderBrush;
             defaultBorderThickness = description.BorderThickness;
+            presenter.SetView(this);
         }
 
         public int Id{ get; set; }
