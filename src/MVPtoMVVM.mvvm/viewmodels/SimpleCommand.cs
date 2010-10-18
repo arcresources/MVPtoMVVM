@@ -5,12 +5,10 @@ namespace MVPtoMVVM.mvvm.viewmodels
     public class SimpleCommand : IObservableCommand
     {
         private readonly Action command;
-        private Func<bool> predicate;
+        private readonly Func<bool> predicate;
+        public event EventHandler CanExecuteChanged = (o, e) => { };
 
-        public SimpleCommand(Action command): this(command, () => true)
-        {
-            
-        }
+        public SimpleCommand(Action command): this(command, () => true) {}
 
         public SimpleCommand(Action command, Func<bool> predicate)
         {
@@ -33,6 +31,5 @@ namespace MVPtoMVVM.mvvm.viewmodels
             CanExecuteChanged(this, EventArgs.Empty);
         }
 
-        public event EventHandler CanExecuteChanged = (o,e)=>{};
     }
 }
