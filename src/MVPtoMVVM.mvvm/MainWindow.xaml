@@ -3,12 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <DockPanel LastChildFill="False">
-        <ListView DockPanel.Dock="Top" ItemsSource="{Binding Path=TodoItems}" >
+        <DockPanel.Resources>
+        <Style x:Key="ValidationStyle" TargetType="Control">
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="true">
+                <Setter Property="Control.ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                <Setter Property="Control.BorderBrush" Value="Red" />
+                <Setter Property="Control.BorderThickness" Value="2" />
+            </Trigger>
+        </Style.Triggers>
+        </Style>
+        </DockPanel.Resources>
+        <ListView DockPanel.Dock="Top" ItemsSource="{Binding Path=TodoItems}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                 <StackPanel Orientation="Horizontal">
-                    <TextBox Width="200" Text="{Binding Path=Description}" />
-                    <DatePicker SelectedDate="{Binding Path=DueDate}" />
+                    <TextBox Width="200" Text="{Binding Path=Description, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ResourceKey=ValidationStyle}" />
+                    <DatePicker SelectedDate="{Binding Path=DueDate, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ResourceKey=ValidationStyle}" />
                     <Button Content="Save" Command="{Binding Path=SaveCommand}"></Button>
                     <Button Content="Del" Command="{Binding Path=DeleteCommand}"></Button>
                 </StackPanel>
