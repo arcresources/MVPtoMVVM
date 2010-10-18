@@ -86,6 +86,11 @@ namespace MVPtoMVVM.mvp
             }
         }
 
+        public bool IsDueSoon
+        {
+            set { dueSoonAlert.Visibility = value ? Visibility.Visible : Visibility.Hidden; }
+        }
+
         public void Remove(int itemId)
         {
             parent.Remove(itemId);

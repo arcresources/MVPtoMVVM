@@ -13,6 +13,7 @@ namespace MVPtoMVVM.views
         ITodoItemPresenter Presenter { get; }
         bool DescriptionHasValidationErrors { set; }
         bool DueDateHasValidationErrors { set; }
+        bool IsDueSoon { set; }
         void Remove(int itemId);
     }
 }

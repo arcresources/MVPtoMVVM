@@ -89,6 +89,7 @@ namespace MVPtoMVVM.presenters
             view.SaveButtonEnabled = IsDirty && IsDescriptionValid() && IsDueDateValid();
             view.DescriptionHasValidationErrors = !IsDescriptionValid();
             view.DueDateHasValidationErrors = !IsDueDateValid();
+            view.IsDueSoon = IsDueSoon();
         }
 
         private bool IsDescriptionValid()
@@ -99,6 +100,11 @@ namespace MVPtoMVVM.presenters
         private bool IsDueDateValid()
         {
             return dueDate >= DateTime.Today;
+        }
+
+        private bool IsDueSoon()
+        {
+            return dueDate <= DateTime.Today.AddDays(1);
         }
     }
 }
