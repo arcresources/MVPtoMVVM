@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
 using MVPtoMVVM.presenters;
 using MVPtoMVVM.views;
@@ -89,6 +88,16 @@ namespace MVPtoMVVM.mvp
         public bool IsDueSoon
         {
             set { dueSoonAlert.Visibility = value ? Visibility.Visible : Visibility.Hidden; }
+        }
+
+        public string DescriptionValidationMessage
+        {
+            set { description.ToolTip = value; }
+        }
+
+        public string DueDateValidationMessage
+        {
+            set { dueDate.ToolTip = value; }
         }
 
         public void Remove(int itemId)

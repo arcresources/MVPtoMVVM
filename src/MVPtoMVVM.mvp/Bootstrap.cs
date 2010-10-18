@@ -1,4 +1,5 @@
 using MVPtoMVVM.domain;
+using MVPtoMVVM.presenters;
 using StructureMap;
 
 namespace MVPtoMVVM.mvp
@@ -11,6 +12,7 @@ namespace MVPtoMVVM.mvp
                 x.Scan(scanner =>
                 {
                     scanner.AssemblyContainingType(typeof(TodoItem));
+                    scanner.AssemblyContainingType(typeof(TodoItemPresenter));
                     scanner.WithDefaultConventions();
                 })
             );

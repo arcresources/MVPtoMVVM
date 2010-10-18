@@ -14,6 +14,8 @@ namespace MVPtoMVVM.views
         bool DescriptionHasValidationErrors { set; }
         bool DueDateHasValidationErrors { set; }
         bool IsDueSoon { set; }
+        string DescriptionValidationMessage { set; }
+        string DueDateValidationMessage { set; }
         void Remove(int itemId);
     }
 }

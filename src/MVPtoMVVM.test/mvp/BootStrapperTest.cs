@@ -1,3 +1,4 @@
+using System;
 using MVPtoMVVM.mvp;
 using MVPtoMVVM.repositories;
 using NUnit.Framework;
@@ -18,7 +19,7 @@ namespace MVPtoMVVM.test.mvp
         [Test]
         public void it_should_register_the_repository()
         {
-            ObjectFactory.WhatDoIHave();
+            Console.Out.WriteLine(ObjectFactory.WhatDoIHave());
             Assert.That(ObjectFactory.GetInstance<ITodoItemRepository>(), Is.TypeOf<TodoItemRepository>());
         }
     }
