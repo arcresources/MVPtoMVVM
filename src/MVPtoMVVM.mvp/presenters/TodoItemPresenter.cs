@@ -1,6 +1,5 @@
 using System;
 using MVPtoMVVM.domain;
-using MVPtoMVVM.mvp.mappers;
 using MVPtoMVVM.mvp.views;
 using MVPtoMVVM.repositories;
 
@@ -9,14 +8,12 @@ namespace MVPtoMVVM.mvp.presenters
     public class TodoItemPresenter : ITodoItemPresenter
     {
         private ITodoItemRepository itemRepository;
-        private ITodoItemMapper itemMapper;
         private ITodoItemView view;
         public int Id { get; set; }
 
-        public TodoItemPresenter(ITodoItemRepository itemRepository, ITodoItemMapper itemMapper)
+        public TodoItemPresenter(ITodoItemRepository itemRepository)
         {
             this.itemRepository = itemRepository;
-            this.itemMapper = itemMapper;
         }
 
         public void SetView(ITodoItemView view)
@@ -43,15 +40,20 @@ namespace MVPtoMVVM.mvp.presenters
 
         public void SaveItem()
         {
-            var item = itemMapper.MapFrom(this);
+            var item = GetTodoItem();
             itemRepository.Save(item);
             Id = item.Id;
             IsDirty = false;
         }
 
+        private TodoItem GetTodoItem()
+        {
+            return new TodoItem {Id = Id, Description = Description, DueDate = DueDate};
+        }
+
         public void DeleteItem()
         {
-            var item = itemMapper.MapFrom(this);
+            var item = GetTodoItem();
             view.Remove(item.Id);
             itemRepository.Delete(item);            
         }
@@ -75,6 +77,8 @@ namespace MVPtoMVVM.mvp.presenters
         }
 
         private bool isDirty;
+
+
         public bool IsDirty
         {
             get { return isDirty; }

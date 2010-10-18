@@ -14,6 +14,10 @@ namespace MVPtoMVVM.mvvm.viewmodels
     {
         private ITodoItemRepository todoItemRepository;
         private Synchronizer<MainWindowViewModel> updater;
+        public event PropertyChangedEventHandler PropertyChanged = (o, e) => { };
+        public ICollection<TodoItemViewModel> TodoItems { get; set; }
+        public ICommand CancelChangesCommand { get; set; }
+        public ICommand AddNewItemCommand { get; set; }
 
         public MainWindowViewModel(ITodoItemRepository todoItemRepository)
         {
@@ -49,11 +53,6 @@ namespace MVPtoMVVM.mvvm.viewmodels
                            Parent = this,
                        };
         }
-
-        public ICollection<TodoItemViewModel> TodoItems { get; set; }
-        public event PropertyChangedEventHandler PropertyChanged = (o,e)=> { };
-        public ICommand CancelChangesCommand { get; set; }
-        public ICommand AddNewItemCommand { get; set; }
 
         public void Update(Expression<Func<MainWindowViewModel, object>> property)
         {
