@@ -61,10 +61,12 @@
     </ApplicationDefinition>
     <Compile Include="Bootstrap.cs" />
     <Compile Include="viewmodels\IObservableCommand.cs" />
+    <Compile Include="viewmodels\IValidation.cs" />
     <Compile Include="viewmodels\MainWindowViewModel.cs" />
     <Compile Include="viewmodels\SimpleCommand.cs" />
     <Compile Include="viewmodels\Synchronizer.cs" />
     <Compile Include="viewmodels\ToDoItemViewModel.cs" />
+    <Compile Include="viewmodels\Validation.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
