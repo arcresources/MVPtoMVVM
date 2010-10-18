@@ -38,7 +38,12 @@ namespace MVPtoMVVM.repositories
 
         public void Delete(TodoItem item)
         {
-            var repoItem = items.Find(x => x.Id == item.Id);
+            Delete(item.Id);
+        }
+
+        public void Delete(int todoItemId)
+        {
+            var repoItem = Get(todoItemId);
             items.Remove(repoItem);
         }
 

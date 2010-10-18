@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace MVPtoMVVM.mvp
+namespace MVPtoMVVM.mvvm
 {
     /// <summary>
     /// Interaction logic for App.xaml

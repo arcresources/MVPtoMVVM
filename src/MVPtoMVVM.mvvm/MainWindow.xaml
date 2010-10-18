@@ -1,0 +1,23 @@
+﻿<Window x:Class="MVPtoMVVM.mvvm.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <DockPanel LastChildFill="False">
+        <ListView DockPanel.Dock="Top" ItemsSource="{Binding Path=TodoItems}" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Width="200" Text="{Binding Path=Description}" />
+                    <DatePicker SelectedDate="{Binding Path=DueDate}" />
+                    <Button Content="Save" Command="{Binding Path=SaveCommand}"></Button>
+                    <Button Content="Del" Command="{Binding Path=DeleteCommand}"></Button>
+                </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
+            <Button Content="Cancel Changes" DockPanel.Dock="Right" Command="{Binding Path=CancelChangesCommand}"/>
+            <Button Content="Add New Item" DockPanel.Dock="Right" Command="{Binding Path=AddNewItemCommand}"/>
+        </DockPanel>
+    </DockPanel>
+</Window>

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{01F8F0EA-64F3-4A1C-B5BF-C0CD4BD3CA8B}</ProjectGuid>
+    <ProjectGuid>{E4A42F0B-36D0-44F4-8EBA-9B4C18FFF842}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MVPtoMVVM.mvp</RootNamespace>
-    <AssemblyName>MVPtoMVVM.mvp</AssemblyName>
+    <RootNamespace>MVPtoMVVM.mvvm</RootNamespace>
+    <AssemblyName>MVPtoMVVM.mvvm</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -59,20 +59,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="mappers\ITodoItemMapper.cs" />
-    <Compile Include="mappers\ITodoItemPresenterMapper.cs" />
-    <Compile Include="mappers\TodoItemMapper.cs" />
-    <Compile Include="mappers\TodoItemPresenterMapper.cs" />
-    <Compile Include="presenters\IMvpPresenter.cs" />
-    <Compile Include="presenters\ITodoItemPresenter.cs" />
-    <Compile Include="presenters\MvpPresenter.cs" />
-    <Compile Include="presenters\TodoItemPresenter.cs" />
-    <Compile Include="TodoItemView.xaml.cs">
-      <DependentUpon>TodoItemView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="views\IMvpView.cs" />
-    <Compile Include="views\ITodoItemView.cs" />
-    <Page Include="MvpWindow.xaml">
+    <Compile Include="Bootstrap.cs" />
+    <Compile Include="viewmodels\IObservableCommand.cs" />
+    <Compile Include="viewmodels\MainWindowViewModel.cs" />
+    <Compile Include="viewmodels\SimpleCommand.cs" />
+    <Compile Include="viewmodels\Synchronizer.cs" />
+    <Compile Include="viewmodels\ToDoItemViewModel.cs" />
+    <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -80,15 +73,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Bootstrap.cs" />
-    <Compile Include="MvpWindow.xaml.cs">
-      <DependentUpon>MvpWindow.xaml</DependentUpon>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="TodoItemView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -120,9 +108,6 @@
       <Project>{FFF299F6-DB6A-4858-B7A9-B5BE3F7C6325}</Project>
       <Name>MVPtoMVVM</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="alert.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
