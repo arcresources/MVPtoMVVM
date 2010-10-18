@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Input;
+using MVPtoMVVM.domain;
 using MVPtoMVVM.repositories;
 
 namespace MVPtoMVVM.mvvm.viewmodels
@@ -32,7 +33,7 @@ namespace MVPtoMVVM.mvvm.viewmodels
 
         private void Save()
         {
-            var todoItem = todoItemRepository.Get(Id);
+            var todoItem = todoItemRepository.Get(Id) ?? new TodoItem();
             todoItem.DueDate = DueDate;
             todoItem.Description = Description;
             todoItemRepository.Save(todoItem);

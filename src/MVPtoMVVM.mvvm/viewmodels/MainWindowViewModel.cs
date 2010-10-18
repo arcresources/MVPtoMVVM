@@ -22,21 +22,24 @@ namespace MVPtoMVVM.mvvm.viewmodels
             AddNewItemCommand = new SimpleCommand(AddNewItem);
             CancelChangesCommand = new SimpleCommand(RefreshChanges);
             updater = new Synchronizer<MainWindowViewModel>(this.PropertyChanged);
+            TodoItems = new ObservableCollection<TodoItemViewModel>();
             RefreshChanges();
         }
 
         private void RefreshChanges()
         {
-            TodoItems = new ObservableCollection<TodoItemViewModel>(todoItemRepository.GetAll().Select(MapFrom));
+            TodoItems.Clear();
+            foreach (var item in todoItemRepository.GetAll().Select(MapFrom))
+            {
+                TodoItems.Add(item);
+            }
+            
             updater.Update(x => x.TodoItems);
         }
 
         private void AddNewItem()
         {
-            var todoItem = new TodoItem();
-            todoItemRepository.Save(todoItem);
-
-            TodoItems.Add(MapFrom(todoItem));
+            TodoItems.Add(new TodoItemViewModel(todoItemRepository){Parent =  this});
             updater.Update(x => x.TodoItems);
         }
 
