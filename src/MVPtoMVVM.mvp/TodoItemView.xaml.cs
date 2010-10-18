@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Media;
-using MVPtoMVVM.presenters;
-using MVPtoMVVM.views;
+using MVPtoMVVM.mvp.presenters;
+using MVPtoMVVM.mvp.views;
 
 namespace MVPtoMVVM.mvp
 {

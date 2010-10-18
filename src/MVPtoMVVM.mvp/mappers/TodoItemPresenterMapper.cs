@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using MVPtoMVVM.domain;
-using MVPtoMVVM.presenters;
+using MVPtoMVVM.mvp.presenters;
 using StructureMap;
 
-namespace MVPtoMVVM.mappers
+namespace MVPtoMVVM.mvp.mappers
 {
     public class TodoItemPresenterMapper : ITodoItemPresenterMapper
     {

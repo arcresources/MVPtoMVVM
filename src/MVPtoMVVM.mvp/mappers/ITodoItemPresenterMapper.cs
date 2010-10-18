@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using MVPtoMVVM.domain;
-using MVPtoMVVM.presenters;
-using MVPtoMVVM.views;
+using MVPtoMVVM.mvp.presenters;
 
-namespace MVPtoMVVM.mappers
+namespace MVPtoMVVM.mvp.mappers
 {
     public interface ITodoItemPresenterMapper
     {

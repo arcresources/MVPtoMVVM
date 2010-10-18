@@ -1,5 +1,5 @@
 using MVPtoMVVM.domain;
-using MVPtoMVVM.presenters;
+using MVPtoMVVM.mvp.presenters;
 using StructureMap;
 
 namespace MVPtoMVVM.mvp

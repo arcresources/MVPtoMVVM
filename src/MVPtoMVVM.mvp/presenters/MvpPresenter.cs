@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using MVPtoMVVM.domain;
-using MVPtoMVVM.mappers;
+using MVPtoMVVM.mvp.mappers;
+using MVPtoMVVM.mvp.views;
 using MVPtoMVVM.repositories;
-using MVPtoMVVM.views;
 using System.Linq;
 
-namespace MVPtoMVVM.presenters
+namespace MVPtoMVVM.mvp.presenters
 {
     public class MvpPresenter : IMvpPresenter
     {

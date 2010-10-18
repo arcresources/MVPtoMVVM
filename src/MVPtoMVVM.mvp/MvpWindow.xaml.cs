@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using MVPtoMVVM.presenters;
-using MVPtoMVVM.views;
+using MVPtoMVVM.mvp.presenters;
+using MVPtoMVVM.mvp.views;
 using StructureMap;
 
 namespace MVPtoMVVM.mvp

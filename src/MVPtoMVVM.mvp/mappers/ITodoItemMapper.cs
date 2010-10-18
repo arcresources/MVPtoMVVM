@@ -1,7 +1,7 @@
 using MVPtoMVVM.domain;
-using MVPtoMVVM.presenters;
+using MVPtoMVVM.mvp.presenters;
 
-namespace MVPtoMVVM.mappers
+namespace MVPtoMVVM.mvp.mappers
 {
     public interface ITodoItemMapper
     {

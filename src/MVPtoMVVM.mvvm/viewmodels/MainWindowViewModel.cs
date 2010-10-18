@@ -20,7 +20,7 @@ namespace MVPtoMVVM.mvvm.viewmodels
             this.todoItemRepository = todoItemRepository;
             AddNewItemCommand = new SimpleCommand(AddNewItem);
             CancelChangesCommand = new SimpleCommand(RefreshChanges);
-            updater = new Synchronizer<MainWindowViewModel>(this.PropertyChanged);
+            updater = new Synchronizer<MainWindowViewModel>(PropertyChanged);
             TodoItems = new ObservableCollection<TodoItemViewModel>();
             RefreshChanges();
         }
@@ -32,8 +32,6 @@ namespace MVPtoMVVM.mvvm.viewmodels
             {
                 TodoItems.Add(item);
             }
-            
-            updater.Update(x => x.TodoItems);
         }
 
         private void AddNewItem()
@@ -41,13 +39,13 @@ namespace MVPtoMVVM.mvvm.viewmodels
             TodoItems.Add(new TodoItemViewModel(todoItemRepository){Parent =  this, DueDate = DateTime.Today, Description = string.Empty});
         }
 
-        private TodoItemViewModel MapFrom(TodoItem x)
+        private TodoItemViewModel MapFrom(TodoItem item)
         {
             return new TodoItemViewModel(todoItemRepository)
                        {
-                           Id = x.Id,
-                           Description =  x.Description,
-                           DueDate = x.DueDate,                                                                        
+                           Id = item.Id,
+                           Description =  item.Description,
+                           DueDate = item.DueDate,                                                                        
                            Parent = this,
                        };
         }

@@ -1,8 +1,7 @@
 using System;
-using MVPtoMVVM.domain;
-using MVPtoMVVM.views;
+using MVPtoMVVM.mvp.views;
 
-namespace MVPtoMVVM.presenters
+namespace MVPtoMVVM.mvp.presenters
 {
     public interface ITodoItemPresenter
     {

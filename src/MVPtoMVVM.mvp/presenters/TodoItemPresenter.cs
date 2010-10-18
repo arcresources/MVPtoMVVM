@@ -1,10 +1,10 @@
 using System;
 using MVPtoMVVM.domain;
-using MVPtoMVVM.mappers;
+using MVPtoMVVM.mvp.mappers;
+using MVPtoMVVM.mvp.views;
 using MVPtoMVVM.repositories;
-using MVPtoMVVM.views;
 
-namespace MVPtoMVVM.presenters
+namespace MVPtoMVVM.mvp.presenters
 {
     public class TodoItemPresenter : ITodoItemPresenter
     {

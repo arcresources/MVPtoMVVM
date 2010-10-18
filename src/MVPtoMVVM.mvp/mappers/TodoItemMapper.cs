@@ -1,8 +1,7 @@
-﻿using System;
-using MVPtoMVVM.domain;
-using MVPtoMVVM.presenters;
+﻿using MVPtoMVVM.domain;
+using MVPtoMVVM.mvp.presenters;
 
-namespace MVPtoMVVM.mappers
+namespace MVPtoMVVM.mvp.mappers
 {
     public class TodoItemMapper : ITodoItemMapper
     {

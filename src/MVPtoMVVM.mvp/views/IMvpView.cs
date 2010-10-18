@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using MVPtoMVVM.presenters;
+using MVPtoMVVM.mvp.presenters;
 
-namespace MVPtoMVVM.views
+namespace MVPtoMVVM.mvp.views
 {
     public interface IMvpView
     {
