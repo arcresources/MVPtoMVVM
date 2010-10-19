@@ -16,6 +16,8 @@ namespace MVPtoMVVM.mvvm.viewmodels
         public IObservableCommand SaveCommand { get; set; }
         public IObservableCommand DeleteCommand { get; set; }
         public MainWindowViewModel Parent { get; set; }
+        private IDictionary<string, IValidation> validations;
+        public bool IsDirty { get; set; }
 
         public TodoItemViewModel(ITodoItemRepository todoItemRepository)
         {
@@ -38,7 +40,7 @@ namespace MVPtoMVVM.mvvm.viewmodels
 
         private bool CanSave()
         {
-            return validations.Values.All(x => x.IsValid);
+            return validations.Values.All(x => x.IsValid) && IsDirty;
         }
 
         private void Save()
@@ -47,6 +49,7 @@ namespace MVPtoMVVM.mvvm.viewmodels
             todoItem.DueDate = DueDate;
             todoItem.Description = Description;
             todoItemRepository.Save(todoItem);
+            IsDirty = false;
         }
 
         private string description;
@@ -56,20 +59,20 @@ namespace MVPtoMVVM.mvvm.viewmodels
             set
             {
                 description = value;
+                IsDirty = true;
                 synchronizer.Update(x => x.Description);
                 SaveCommand.Changed();
             }
         }
 
         private DateTime dueDate;
-        private IDictionary<string, IValidation> validations;
-
         public DateTime DueDate
         {
             get { return dueDate; }
             set
             {
-                dueDate = value; 
+                dueDate = value;
+                IsDirty = true;
                 synchronizer.Update(x => x.DueDate);
                 synchronizer.Update(x => x.ShowDueSoonAlert);
                 SaveCommand.Changed();

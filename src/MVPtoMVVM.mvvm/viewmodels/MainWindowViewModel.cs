@@ -40,7 +40,7 @@ namespace MVPtoMVVM.mvvm.viewmodels
 
         private void AddNewItem()
         {
-            TodoItems.Add(new TodoItemViewModel(todoItemRepository){Parent =  this, DueDate = DateTime.Today, Description = string.Empty});
+            TodoItems.Add(new TodoItemViewModel(todoItemRepository){Parent =  this, DueDate = DateTime.Today, Description = string.Empty, IsDirty = false});
         }
 
         private TodoItemViewModel MapFrom(TodoItem item)
@@ -51,6 +51,7 @@ namespace MVPtoMVVM.mvvm.viewmodels
                            Description =  item.Description,
                            DueDate = item.DueDate,                                                                        
                            Parent = this,
+                           IsDirty = false,
                        };
         }
 
