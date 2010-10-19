@@ -11,7 +11,7 @@ namespace MVPtoMVVM.mvvm.viewmodels
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
-        private ITodoItemRepository todoItemRepository;
+        private readonly ITodoItemRepository todoItemRepository;
         public event PropertyChangedEventHandler PropertyChanged = (o, e) => { };
         public ICollection<TodoItemViewModel> TodoItems { get; set; }
         public ICommand CancelChangesCommand { get; set; }
@@ -35,11 +35,6 @@ namespace MVPtoMVVM.mvvm.viewmodels
             }
         }
 
-        private void AddNewItem()
-        {
-            TodoItems.Add(new TodoItemViewModel(todoItemRepository){Parent =  this, DueDate = DateTime.Today, Description = string.Empty});
-        }
-
         private TodoItemViewModel MapFrom(TodoItem item)
         {
             return new TodoItemViewModel(todoItemRepository)
@@ -51,9 +46,14 @@ namespace MVPtoMVVM.mvvm.viewmodels
                        };
         }
 
-        public void Update(string bindingName)
+        private void AddNewItem()
         {
-            PropertyChanged(null, new PropertyChangedEventArgs(bindingName));
+            TodoItems.Add(new TodoItemViewModel(todoItemRepository)
+                              {
+                                  Parent =  this, 
+                                  DueDate = DateTime.Today, 
+                                  Description = string.Empty
+                              });
         }
     }
 }
