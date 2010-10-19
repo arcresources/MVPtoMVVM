@@ -41,7 +41,7 @@ namespace MVPtoMVVM.mvvm.viewmodels
 
         private bool CanSave()
         {
-            return validations.Values.All(x => x.IsValid);
+            return validations.Values.All(x => x.IsValid) && IsDirty;
         }
 
         private void Save()
