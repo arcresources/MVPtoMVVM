@@ -5,7 +5,7 @@ namespace MVPtoMVVM.mvp.views
 {
     public interface IMvpView
     {
-        void SetTodoItems(IEnumerable<ITodoItemPresenter> presenters);
+        void ShowTodoItems(IEnumerable<ITodoItemPresenter> presenters);
         IEnumerable<ITodoItemPresenter> GetTodoItems();
     }
 }
