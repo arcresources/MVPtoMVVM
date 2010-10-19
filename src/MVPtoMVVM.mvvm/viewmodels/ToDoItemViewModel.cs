@@ -11,6 +11,12 @@ namespace MVPtoMVVM.mvvm.viewmodels
     public class TodoItemViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
         private readonly ITodoItemRepository todoItemRepository;
+        public IObservableCommand SaveCommand { get; set; }
+        public IObservableCommand DeleteCommand { get; set; }
+        public MainWindowViewModel Parent { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged = (o, e) => { };
+        public int Id { get; set; }
+        private readonly IDictionary<string, IValidation> validations;
 
         public TodoItemViewModel(ITodoItemRepository todoItemRepository)
         {
@@ -32,12 +38,6 @@ namespace MVPtoMVVM.mvvm.viewmodels
                               };
         }
 
-        private void Delete()
-        {
-            todoItemRepository.Delete(Id);
-            Parent.TodoItems.Remove(this);
-        }
-
         private bool CanSave()
         {
             return validations.Values.All(x => x.IsValid);
@@ -51,8 +51,12 @@ namespace MVPtoMVVM.mvvm.viewmodels
             todoItemRepository.Save(todoItem);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged = (o, e) => { };
-        public int Id { get; set; }
+        private void Delete()
+        {
+            todoItemRepository.Delete(Id);
+            Parent.TodoItems.Remove(this);
+        }
+        
         private string description;
 
         public string Description
@@ -67,7 +71,6 @@ namespace MVPtoMVVM.mvvm.viewmodels
         }
 
         private DateTime dueDate;
-        private readonly IDictionary<string, IValidation> validations;
 
         public DateTime DueDate
         {
@@ -81,10 +84,6 @@ namespace MVPtoMVVM.mvvm.viewmodels
                 SaveCommand.Changed();
             }
         }
-
-        public IObservableCommand SaveCommand { get; set; }
-        public IObservableCommand DeleteCommand { get; set; }
-        public MainWindowViewModel Parent { get; set; }
 
         public Visibility ShowAlert
         {
