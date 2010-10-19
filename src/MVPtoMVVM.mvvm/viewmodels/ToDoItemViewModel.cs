@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Windows;
 using MVPtoMVVM.domain;
 using MVPtoMVVM.repositories;
 using System.Linq;
@@ -76,12 +77,9 @@ namespace MVPtoMVVM.mvvm.viewmodels
         public IObservableCommand SaveCommand { get; set; }
         public IObservableCommand DeleteCommand { get; set; }
         public MainWindowViewModel Parent { get; set; }
-        public bool ShowAlert
+        public Visibility ShowAlert
         {
-            get
-            {
-                return DueDate <= DateTime.Today.AddDays(1);
-            }
+            get { return DueDate <= DateTime.Today.AddDays(1) ? Visibility.Visible : Visibility.Hidden; }
         }
 
         public string this[string columnName]
