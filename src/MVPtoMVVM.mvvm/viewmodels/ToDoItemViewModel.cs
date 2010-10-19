@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 using MVPtoMVVM.domain;
 using MVPtoMVVM.repositories;
 using System.Linq;
@@ -12,6 +11,11 @@ namespace MVPtoMVVM.mvvm.viewmodels
     {
         private readonly ITodoItemRepository todoItemRepository;
         private Synchronizer<TodoItemViewModel> synchronizer;
+        public event PropertyChangedEventHandler PropertyChanged = (o, e) => { };
+        public int Id { get; set; }
+        public IObservableCommand SaveCommand { get; set; }
+        public IObservableCommand DeleteCommand { get; set; }
+        public MainWindowViewModel Parent { get; set; }
 
         public TodoItemViewModel(ITodoItemRepository todoItemRepository)
         {
@@ -45,8 +49,6 @@ namespace MVPtoMVVM.mvvm.viewmodels
             todoItemRepository.Save(todoItem);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged = (o,e)=> { };
-        public int Id { get; set; }
         private string description;
         public string Description
         {
@@ -74,9 +76,6 @@ namespace MVPtoMVVM.mvvm.viewmodels
             }
         }
 
-        public IObservableCommand SaveCommand { get; set; }
-        public IObservableCommand DeleteCommand { get; set; }
-        public MainWindowViewModel Parent { get; set; }
         public bool ShowDueSoonAlert
         {
             get
@@ -96,20 +95,7 @@ namespace MVPtoMVVM.mvvm.viewmodels
 
         public string Error
         {
-            get { return BuildErrors(); }
-        }
-
-        private string BuildErrors()
-        {
-            var builder = new StringBuilder();
-            foreach (var validation in validations.Values)
-            {
-                if(!validation.IsValid)
-                {
-                    builder.AppendLine(validation.Message);
-                }
-            }
-            return builder.ToString();
+            get { return string.Empty; }
         }
     }
 }
