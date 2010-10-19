@@ -19,7 +19,7 @@ namespace MVPtoMVVM.mvp
             cancelButton.Click += (o, e) => presenter.CancelAllChanges();
         }
 
-        public void SetTodoItems(IEnumerable<ITodoItemPresenter> presenters)
+        public void ShowTodoItems(IEnumerable<ITodoItemPresenter> presenters)
         {
             todoItemsList.ItemsSource = presenters.Select(x => new TodoItemView(x, presenter));
         }
