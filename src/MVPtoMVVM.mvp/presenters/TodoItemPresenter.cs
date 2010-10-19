@@ -22,20 +22,30 @@ namespace MVPtoMVVM.mvp.presenters
             InitializeView();
         }
 
-        public void SetItem(TodoItem item)
-        {
-            Id = item.Id;
-            Description = item.Description;
-            DueDate = item.DueDate;
-            IsDirty = false;
-        }
-
         private void InitializeView()
         {
             view.Id = Id;
             view.Description = Description;
             view.DueDate = DueDate;
             view.SaveButtonEnabled = false;
+        }
+
+        private void UpdateControlState()
+        {
+            view.SaveButtonEnabled = IsDirty && IsDescriptionValid() && IsDueDateValid();
+            view.DescriptionHasValidationErrors = !IsDescriptionValid();
+            view.DescriptionValidationMessage = GetDescriptionValidationMessage();
+            view.DueDateHasValidationErrors = !IsDueDateValid();
+            view.DueDateValidationMessage = GetDueDateValidationMessage();
+            view.IsDueSoon = IsDueSoon();
+        }
+
+        public void SetItem(TodoItem item)
+        {
+            Id = item.Id;
+            Description = item.Description;
+            DueDate = item.DueDate;
+            IsDirty = false;
         }
 
         public void SaveItem()
@@ -86,16 +96,6 @@ namespace MVPtoMVVM.mvp.presenters
             if (view != null)
                 UpdateControlState();
             }
-        }
-
-        private void UpdateControlState()
-        {
-            view.SaveButtonEnabled = IsDirty && IsDescriptionValid() && IsDueDateValid();
-            view.DescriptionHasValidationErrors = !IsDescriptionValid();
-            view.DescriptionValidationMessage = GetDescriptionValidationMessage();
-            view.DueDateHasValidationErrors = !IsDueDateValid();
-            view.DueDateValidationMessage = GetDueDateValidationMessage();
-            view.IsDueSoon = IsDueSoon();
         }
 
         private bool IsDescriptionValid()
