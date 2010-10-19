@@ -19,7 +19,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="alert.png" Visibility="{Binding Path=ShowDueSoonAlert, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
+                    <Image Source="alert.png" Visibility="{Binding Path=ShowAlert, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
                     <TextBox Width="200" Text="{Binding Path=Description, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ResourceKey=ValidationStyle}" />
                     <DatePicker SelectedDate="{Binding Path=DueDate, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ResourceKey=ValidationStyle}" />
                     <Button Content="Save" Command="{Binding Path=SaveCommand}"></Button>

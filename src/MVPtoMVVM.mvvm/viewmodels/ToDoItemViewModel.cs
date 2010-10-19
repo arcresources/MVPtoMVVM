@@ -11,14 +11,12 @@ namespace MVPtoMVVM.mvvm.viewmodels
     public class TodoItemViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
         private readonly ITodoItemRepository todoItemRepository;
-        private Synchronizer<TodoItemViewModel> updater;
 
         public TodoItemViewModel(ITodoItemRepository todoItemRepository)
         {
             this.todoItemRepository = todoItemRepository;
             SaveCommand = new SimpleCommand(Save, CanSave);
             DeleteCommand = new SimpleCommand(Delete);
-            updater = new Synchronizer<TodoItemViewModel>(PropertyChanged);
             validations = new Dictionary<string, IValidation>
                               {
                                   {"Description", new Validation(() => !string.IsNullOrEmpty(Description), "Cannot have an empty description.")},
@@ -54,7 +52,7 @@ namespace MVPtoMVVM.mvvm.viewmodels
             set
             {
                 description = value;
-                updater.Update(x => x.Description);
+                PropertyChanged(null, new PropertyChangedEventArgs("Description"));
                 SaveCommand.Changed();
             }
         }
@@ -68,8 +66,9 @@ namespace MVPtoMVVM.mvvm.viewmodels
             set
             {
                 dueDate = value; 
-                updater.Update(x => x.DueDate);
-                updater.Update(x => x.ShowDueSoonAlert);
+
+                PropertyChanged(null, new PropertyChangedEventArgs("DueDate"));
+                PropertyChanged(null, new PropertyChangedEventArgs("ShowAlert"));
                 SaveCommand.Changed();
             }
         }
@@ -77,7 +76,7 @@ namespace MVPtoMVVM.mvvm.viewmodels
         public IObservableCommand SaveCommand { get; set; }
         public IObservableCommand DeleteCommand { get; set; }
         public MainWindowViewModel Parent { get; set; }
-        public bool ShowDueSoonAlert
+        public bool ShowAlert
         {
             get
             {
