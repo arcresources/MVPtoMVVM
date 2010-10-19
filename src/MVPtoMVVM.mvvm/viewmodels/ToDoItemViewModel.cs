@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using MVPtoMVVM.domain;
 using MVPtoMVVM.repositories;
@@ -103,20 +102,7 @@ namespace MVPtoMVVM.mvvm.viewmodels
 
         public string Error
         {
-            get { return BuildErrors(); }
-        }
-
-        private string BuildErrors()
-        {
-            var builder = new StringBuilder();
-            foreach (var validation in validations.Values)
-            {
-                if (!validation.IsValid)
-                {
-                    builder.AppendLine(validation.Message);
-                }
-            }
-            return builder.ToString();
+            get { return string.Empty; }
         }
     }
 }
