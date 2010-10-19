@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using MVPtoMVVM.domain;
 using MVPtoMVVM.repositories;
-using System.Linq;
 
 namespace MVPtoMVVM.mvvm.viewmodels
 {
@@ -20,8 +20,16 @@ namespace MVPtoMVVM.mvvm.viewmodels
             DeleteCommand = new SimpleCommand(Delete);
             validations = new Dictionary<string, IValidation>
                               {
-                                  {"Description", new Validation(() => !string.IsNullOrEmpty(Description), "Cannot have an empty description.")},
-                                  {"DueDate", new Validation(() => DueDate >= DateTime.Today, "Due Date must occur on or after today.")}
+                                  {
+                                      "Description",
+                                      new Validation(() => !string.IsNullOrEmpty(Description),
+                                                    "Cannot have an empty description.")
+                                  },
+                                  {
+                                      "DueDate", 
+                                      new Validation(() => DueDate >= DateTime.Today, 
+                                                     "Due Date must occur on or after today.")
+                                  }
                               };
         }
 
@@ -44,9 +52,10 @@ namespace MVPtoMVVM.mvvm.viewmodels
             todoItemRepository.Save(todoItem);
         }
 
-        public event PropertyChangedEventHandler PropertyChanged = (o,e)=> { };
+        public event PropertyChangedEventHandler PropertyChanged = (o, e) => { };
         public int Id { get; set; }
         private string description;
+
         public string Description
         {
             get { return description; }
@@ -59,14 +68,14 @@ namespace MVPtoMVVM.mvvm.viewmodels
         }
 
         private DateTime dueDate;
-        private IDictionary<string, IValidation> validations;
+        private readonly IDictionary<string, IValidation> validations;
 
         public DateTime DueDate
         {
             get { return dueDate; }
             set
             {
-                dueDate = value; 
+                dueDate = value;
 
                 PropertyChanged(null, new PropertyChangedEventArgs("DueDate"));
                 PropertyChanged(null, new PropertyChangedEventArgs("ShowAlert"));
@@ -77,6 +86,7 @@ namespace MVPtoMVVM.mvvm.viewmodels
         public IObservableCommand SaveCommand { get; set; }
         public IObservableCommand DeleteCommand { get; set; }
         public MainWindowViewModel Parent { get; set; }
+
         public Visibility ShowAlert
         {
             get { return DueDate <= DateTime.Today.AddDays(1) ? Visibility.Visible : Visibility.Hidden; }
@@ -101,7 +111,7 @@ namespace MVPtoMVVM.mvvm.viewmodels
             var builder = new StringBuilder();
             foreach (var validation in validations.Values)
             {
-                if(!validation.IsValid)
+                if (!validation.IsValid)
                 {
                     builder.AppendLine(validation.Message);
                 }
