@@ -23,12 +23,28 @@ namespace MVPtoMVVM.mvp.presenters
             InitializeView();
         }
 
+        private void InitializeView()
+        {
+            RefreshItems();
+        }
+
+        private void RefreshItems()
+        {
+            var todoItemPresenters = itemRepository.GetAll().Select(MapFrom);
+            view.ShowTodoItems(todoItemPresenters);
+        }
+
+        private ITodoItemPresenter MapFrom(TodoItem todoItem)
+        {
+            return new TodoItemPresenter(itemRepository) { Description = todoItem.Description, DueDate = todoItem.DueDate, Id = todoItem.Id };
+        }
+
         public void AddNewItem()
         {
             var items = new List<ITodoItemPresenter>(view.GetTodoItems());
             var newItem = new TodoItemPresenter(itemRepository) {Description = string.Empty, DueDate = DateTime.Today} ;
             items.Add(newItem);
-            view.SetTodoItems(items);
+            view.ShowTodoItems(items);
         }
 
         public void CancelAllChanges()
@@ -38,22 +54,8 @@ namespace MVPtoMVVM.mvp.presenters
 
         public void Remove(int itemId)
         {
-            view.SetTodoItems(view.GetTodoItems().Where(x => x.Id != itemId));
+            view.ShowTodoItems(view.GetTodoItems().Where(x => x.Id != itemId));
         }
 
-        private void InitializeView()
-        {
-            RefreshItems();
-        }
-
-        private void RefreshItems()
-        {
-            view.SetTodoItems(itemRepository.GetAll().Select(MapFrom));
-        }
-
-        private ITodoItemPresenter MapFrom(TodoItem todoItem)
-        {
-            return new TodoItemPresenter(itemRepository) { Description = todoItem.Description, DueDate = todoItem.DueDate, Id = todoItem.Id};
-        }
     }
 }

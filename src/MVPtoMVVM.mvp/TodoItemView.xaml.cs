@@ -6,9 +6,6 @@ using MVPtoMVVM.mvp.views;
 
 namespace MVPtoMVVM.mvp
 {
-    /// <summary>
-    /// Interaction logic for TodoItemView.xaml
-    /// </summary>
     public partial class TodoItemView : ITodoItemView
     {
         private readonly IMvpPresenter parent;
