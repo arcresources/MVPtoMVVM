@@ -83,8 +83,8 @@ namespace MVPtoMVVM.mvvm.viewmodels
                 dueDate = value;
                 IsDirty = true;
 
-                PropertyChanged(null, new PropertyChangedEventArgs("DueDate"));
-                PropertyChanged(null, new PropertyChangedEventArgs("ShowAlert"));
+                PropertyChanged(this, new PropertyChangedEventArgs("DueDate"));
+                PropertyChanged(this, new PropertyChangedEventArgs("ShowAlert"));
                 SaveCommand.Changed();
             }
         }
