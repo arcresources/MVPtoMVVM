@@ -40,9 +40,10 @@ namespace MVPtoMVVM.mvvm.viewmodels
             return new TodoItemViewModel(todoItemRepository)
                        {
                            Id = item.Id,
-                           Description =  item.Description,
-                           DueDate = item.DueDate,                                                                        
+                           Description = item.Description,
+                           DueDate = item.DueDate,
                            Parent = this,
+                           IsDirty = false,
                        };
         }
 
@@ -52,7 +53,8 @@ namespace MVPtoMVVM.mvvm.viewmodels
                               {
                                   Parent =  this, 
                                   DueDate = DateTime.Today, 
-                                  Description = string.Empty
+                                  Description = string.Empty,
+                                  IsDirty = false,
                               });
         }
     }

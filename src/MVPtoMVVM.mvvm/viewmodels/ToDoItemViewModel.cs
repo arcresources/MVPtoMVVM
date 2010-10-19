@@ -17,6 +17,7 @@ namespace MVPtoMVVM.mvvm.viewmodels
         public event PropertyChangedEventHandler PropertyChanged = (o, e) => { };
         public int Id { get; set; }
         private readonly IDictionary<string, IValidation> validations;
+        public bool IsDirty { get; set; }
 
         public TodoItemViewModel(ITodoItemRepository todoItemRepository)
         {
@@ -49,6 +50,7 @@ namespace MVPtoMVVM.mvvm.viewmodels
             todoItem.DueDate = DueDate;
             todoItem.Description = Description;
             todoItemRepository.Save(todoItem);
+            IsDirty = false;
         }
 
         private void Delete()
@@ -65,6 +67,7 @@ namespace MVPtoMVVM.mvvm.viewmodels
             set
             {
                 description = value;
+                IsDirty = true;
                 PropertyChanged(null, new PropertyChangedEventArgs("Description"));
                 SaveCommand.Changed();
             }
@@ -78,6 +81,7 @@ namespace MVPtoMVVM.mvvm.viewmodels
             set
             {
                 dueDate = value;
+                IsDirty = true;
 
                 PropertyChanged(null, new PropertyChangedEventArgs("DueDate"));
                 PropertyChanged(null, new PropertyChangedEventArgs("ShowAlert"));
