@@ -65,8 +65,11 @@ namespace MVPtoMVVM.mvvm.viewmodels
         public DateTime DueDate
         {
             get { return dueDate; }
-            set { dueDate = value; 
+            set
+            {
+                dueDate = value; 
                 updater.Update(x => x.DueDate);
+                updater.Update(x => x.ShowDueSoonAlert);
                 SaveCommand.Changed();
             }
         }
@@ -74,6 +77,13 @@ namespace MVPtoMVVM.mvvm.viewmodels
         public IObservableCommand SaveCommand { get; set; }
         public IObservableCommand DeleteCommand { get; set; }
         public MainWindowViewModel Parent { get; set; }
+        public bool ShowDueSoonAlert
+        {
+            get
+            {
+                return DueDate <= DateTime.Today.AddDays(1);
+            }
+        }
 
         public string this[string columnName]
         {
