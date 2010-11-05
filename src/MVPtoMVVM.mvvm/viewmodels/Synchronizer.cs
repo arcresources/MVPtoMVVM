@@ -6,16 +6,16 @@ namespace MVPtoMVVM.mvvm.viewmodels
 {
     public class Synchronizer<T> where T : INotifyPropertyChanged
     {
-        private readonly PropertyChangedEventHandler eventHandler;
+        private readonly Func<PropertyChangedEventHandler> eventHandler;
 
-        public Synchronizer(PropertyChangedEventHandler eventHandler)
+        public Synchronizer(Func<PropertyChangedEventHandler> eventHandler)
         {
             this.eventHandler = eventHandler;
         }
 
-        public void Update(Expression<Func<T, object>> property)
+        public void Update(T viewModel, Expression<Func<T, object>> property)
         {
-            eventHandler(null, new PropertyChangedEventArgs(GetPropertyNameFrom(property)));
+            eventHandler()(viewModel, new PropertyChangedEventArgs(GetPropertyNameFrom(property)));
         }
 
         string GetPropertyNameFrom(Expression<Func<T, object>> property)

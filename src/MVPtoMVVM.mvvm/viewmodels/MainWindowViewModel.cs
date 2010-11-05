@@ -24,7 +24,7 @@ namespace MVPtoMVVM.mvvm.viewmodels
             this.todoItemRepository = todoItemRepository;
             AddNewItemCommand = new SimpleCommand(AddNewItem);
             CancelChangesCommand = new SimpleCommand(RefreshChanges);
-            updater = new Synchronizer<MainWindowViewModel>(PropertyChanged);
+            updater = new Synchronizer<MainWindowViewModel>(() => PropertyChanged);
             TodoItems = new ObservableCollection<TodoItemViewModel>();
             RefreshChanges();
         }
@@ -57,7 +57,7 @@ namespace MVPtoMVVM.mvvm.viewmodels
 
         public void Update(Expression<Func<MainWindowViewModel, object>> property)
         {
-            updater.Update(property);
+            updater.Update(this, property);
         }
     }
 }

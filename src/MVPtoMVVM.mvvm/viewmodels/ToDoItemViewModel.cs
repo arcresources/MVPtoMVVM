@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq.Expressions;
+using System.Windows;
 using MVPtoMVVM.domain;
 using MVPtoMVVM.repositories;
 using System.Linq;
@@ -24,7 +26,7 @@ namespace MVPtoMVVM.mvvm.viewmodels
             this.todoItemRepository = todoItemRepository;
             SaveCommand = new SimpleCommand(Save, CanSave);
             DeleteCommand = new SimpleCommand(Delete);
-            synchronizer = new Synchronizer<TodoItemViewModel>(PropertyChanged);
+            synchronizer = new Synchronizer<TodoItemViewModel>(() => PropertyChanged);
             validations = new Dictionary<string, IValidation>
                               {
                                   {"Description", new Validation(() => !string.IsNullOrEmpty(Description), "Cannot have an empty description.")},
@@ -60,9 +62,14 @@ namespace MVPtoMVVM.mvvm.viewmodels
             {
                 description = value;
                 IsDirty = true;
-                synchronizer.Update(x => x.Description);
+                Update(x => x.Description);
                 SaveCommand.Changed();
             }
+        }
+
+        private void Update(Expression<Func<TodoItemViewModel, object>> func)
+        {
+            synchronizer.Update(this, func);
         }
 
         private DateTime dueDate;
@@ -73,17 +80,17 @@ namespace MVPtoMVVM.mvvm.viewmodels
             {
                 dueDate = value;
                 IsDirty = true;
-                synchronizer.Update(x => x.DueDate);
-                synchronizer.Update(x => x.ShowDueSoonAlert);
+                Update(x => x.DueDate);
+                Update(x => x.ShowDueSoonAlert);
                 SaveCommand.Changed();
             }
         }
 
-        public bool ShowDueSoonAlert
+        public Visibility ShowDueSoonAlert
         {
             get
             {
-                return DueDate <= DateTime.Today.AddDays(1);
+                return DueDate <= DateTime.Today.AddDays(1) ? Visibility.Visible : Visibility.Hidden;
             }
         }
 
